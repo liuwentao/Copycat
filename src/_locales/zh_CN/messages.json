@@ -29,6 +29,9 @@
 , "TAB_URL_TO_PLAIN": {
     "message": "标签页链接 → 纯文本"
   }
+, "TAB_URL_TO_TID": {
+    "message": "标签页链接 → Tiddly"
+  }
 , "TAB_URL_TO_MARKDOWN": {
     "message": "标签页链接 → Markdown"
   }
@@ -39,6 +42,9 @@
     "message": "标签页链接 → BBCode"
   }
 , "FRAME_URL_TO_PLAIN": {
+    "message": "框架链接 → 纯文本"
+  }
+, "FRAME_URL_TO_TID": {
     "message": "框架链接 → 纯文本"
   }
 , "FRAME_URL_TO_MARKDOWN": {
@@ -58,6 +64,9 @@
   }
 , "LINK_TO_BBCODE": {
     "message": "链接 → BBCode"
+  }
+, "LINK_TO_TID": {
+    "message": "链接 → Tiddly"
   }
 , "SELECTION_TO_MARKDOWN": {
     "message": "选中内容 → Markdown"

@@ -68,6 +68,9 @@
 , "LINK_TO_BBCODE": {
     "message": "Link → BBCode"
   }
+, "LINK_TO_TID": {
+    "message": "Link → Tiddly"
+  }
 , "SELECTION_TO_MARKDOWN": {
     "message": "Selection → Markdown"
   }
@@ -119,6 +122,7 @@
 , "IMAGE_TO_BBCODE": {
     "message": "Image → BBCode"
   }
+
 , "IMAGE_TO_DATA_URI_RAW": {
     "message": "Image → DataURI(original format)"
   }

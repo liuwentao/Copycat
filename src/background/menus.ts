@@ -1,9 +1,12 @@
 import {
   TAB_URL_TO_PLAIN
+, TAB_URL_TO_TID
 , TAB_URL_TO_MARKDOWN
 , TAB_URL_TO_HTML
 , TAB_URL_TO_BBCODE
 , FRAME_URL_TO_PLAIN
+, FRAME_URL_TO_TID
+, LINK_TO_TID
 , FRAME_URL_TO_MARKDOWN
 , FRAME_URL_TO_HTML
 , FRAME_URL_TO_BBCODE
@@ -48,17 +51,20 @@ export default new Map<string[], IMenuItem[]>([
   , { id: TAB_URL_TO_MARKDOWN }
   , { id: TAB_URL_TO_BBCODE }
   , { id: TAB_URL_TO_HTML }
+  , { id: TAB_URL_TO_TID }
   ]]
 , [['frame'], [
     { id: FRAME_URL_TO_PLAIN }
   , { id: FRAME_URL_TO_MARKDOWN }
   , { id: FRAME_URL_TO_BBCODE }
   , { id: FRAME_URL_TO_HTML }
+  , { id: FRAME_URL_TO_TID }
   ]]
 , [['link'], [
     { id: LINK_TO_MARKDOWN }
   , { id: LINK_TO_BBCODE }
   , { id: LINK_TO_HTML }
+  , { id: LINK_TO_TID}
   ]]
 , [['selection'], [
     { id: SELECTION_TO_MARKDOWN }

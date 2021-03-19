@@ -11,6 +11,7 @@ import {
 , convertUrlToLinkMarkdown
 , convertUrlToLinkBBCode
 , convertUrlToLinkPlain
+, convertUrlToLinkTid
 , convertUrlToImageHTML
 , convertUrlToImageMarkdown
 , convertUrlToImageBBCode
@@ -31,6 +32,7 @@ import {
 } from '../converters'
 import {
   TAB_URL_TO_PLAIN
+, TAB_URL_TO_TID
 , TAB_URL_TO_MARKDOWN
 , TAB_URL_TO_HTML
 , TAB_URL_TO_BBCODE
@@ -38,9 +40,11 @@ import {
 , FRAME_URL_TO_MARKDOWN
 , FRAME_URL_TO_HTML
 , FRAME_URL_TO_BBCODE
+, FRAME_URL_TO_TID
 , LINK_TO_MARKDOWN
 , LINK_TO_HTML
 , LINK_TO_BBCODE
+, LINK_TO_TID
 , SELECTION_TO_MARKDOWN
 , SELECTION_TO_HTML
 , SELECTION_TO_HTML_ONLY_A_TAG
@@ -87,6 +91,11 @@ export default {
       return convertUrlToLinkPlain(tab.url, tab.title)
     }
   }) as CommandComplicateHandler
+,  [TAB_URL_TO_TID]: ((info, tab) => {
+    if (tab && tab.url) {
+      return convertUrlToLinkTid(tab.url, tab.title)
+    }
+  }) as CommandComplicateHandler
 , [TAB_URL_TO_MARKDOWN]: ((info, tab) => {
     if (tab && tab.url) {
       return convertUrlToLinkMarkdown(tab.url, tab.title)
@@ -110,6 +119,17 @@ export default {
         return convertUrlToLinkPlain(url, title)
       } else {
         return convertUrlToLinkPlain(info.frameUrl)
+      }
+    }
+  }) as ContextMenusClickHandler
+, [FRAME_URL_TO_TID]: (async (info, tab) => {
+    if (info.frameUrl) {
+      if (tab && tab.id && tab.url) {
+        const url = convertUrlToFormattedURL(info.frameUrl, tab.url)
+        const title = await getDocumentTitle(tab.id, info.frameId)
+        return convertUrlToLinkTid(url, title)
+      } else {
+        return convertUrlToLinkTid(info.frameUrl)
       }
     }
   }) as ContextMenusClickHandler
@@ -196,6 +216,21 @@ export default {
         return convertUrlToLinkBBCode(url, title || info.linkText)
       } else {
         return convertUrlToLinkBBCode(info.linkUrl, info.linkText)
+      }
+    }
+  }) as ContextMenusClickHandler
+, [LINK_TO_TID]: (async (info, tab) => {
+    if (info.linkUrl) {
+      if (tab && tab.id && tab.url) {
+        const url = convertUrlToFormattedURL(info.linkUrl, info.frameUrl || tab.url)
+        const html = await getActiveElementContent(tab.id, info.frameId)
+        const title =
+        convertHtmlToBeautifyHTML(
+          convertHtmlToSafeHTML(html)
+        )
+        return convertUrlToLinkTid(url, title || info.linkText)
+      } else {
+        return convertUrlToLinkTid(info.linkUrl, info.linkText)
       }
     }
   }) as ContextMenusClickHandler
