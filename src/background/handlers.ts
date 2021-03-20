@@ -14,6 +14,7 @@ import {
 , convertUrlToLinkTid
 , convertUrlToImageHTML
 , convertUrlToImageMarkdown
+, convertUrlToImageTid
 , convertUrlToImageBBCode
 , convertUrlToImageDataURI
 , convertUrlToFormattedURL
@@ -24,6 +25,7 @@ import {
 , convertHtmlToMarkdown
 , convertHtmlToOnlyATagHTML
 , convertHtmlToNoAttrHTML
+, convertHtmlToTid
 , convertHtmlToPlainText
 , convertMarkdownToBeautifyMarkdown
 , convertTextToRawString
@@ -53,10 +55,12 @@ import {
 , SELECTION_TO_PLAIN
 , SELECTION_TO_PLAIN_TRIMMED
 , SELECTION_TO_RAW_STRING
+, SELECTION_TO_TID
 , IMAGE_TO_MARKDOWN
 , IMAGE_TO_MARKDOWN_DATA_URI_JPEG
 , IMAGE_TO_MARKDOWN_DATA_URI_PNG
 , IMAGE_TO_MARKDOWN_DATA_URI_WEBP
+, IMAGE_TO_TID
 , IMAGE_TO_HTML
 , IMAGE_TO_HTML_DATA_URI_JPEG
 , IMAGE_TO_HTML_DATA_URI_PNG
@@ -265,6 +269,16 @@ export default {
       )
     }
   }) as ContextMenusClickHandler
+, [IMAGE_TO_TID]: ((info, tab) => {
+    if (info.mediaType === 'image' && info.srcUrl) {
+      if (tab && tab.url) {
+        const url = convertUrlToFormattedURL(info.srcUrl, info.frameUrl || tab.url)
+        return convertUrlToImageTid(url)
+      } else {
+        return convertUrlToImageTid(info.srcUrl)
+      }
+    }
+  }) as ContextMenusClickHandler
 , [IMAGE_TO_HTML]: ((info, tab) => {
     if (info.mediaType === 'image' && info.srcUrl) {
       if (tab && tab.url) {
@@ -437,6 +451,22 @@ export default {
     if (tab && tab.id) {
       const text = await getSelectionText(tab.id, info.frameId)
       return convertTextToRawString(text)
+    }
+  }) as CommandComplicateHandler
+, [SELECTION_TO_TID]: (async (info, tab) => {
+    if (tab && tab.id) {
+      const html = await getSelectionHTML(tab.id, info.frameId)
+      const baseUrl = info.frameUrl || info.pageUrl || tab.url
+      return (
+          convertHtmlToTid(
+            convertHtmlToBeautifyHTML(
+              convertHtmlToFormattedLinkHTML(
+                convertHtmlToSafeHTML(html)
+              , baseUrl
+              )
+            )
+          )
+      )
     }
   }) as CommandComplicateHandler
 } as UniversalHandlers

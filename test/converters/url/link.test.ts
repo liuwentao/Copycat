@@ -3,6 +3,7 @@ import {
 , convertUrlToLinkHTML
 , convertUrlToLinkMarkdown
 , convertUrlToLinkPlain
+, convertUrlToLinkTid
 } from '../../../src/converters/url/link'
 
 test('convertUrlToLinkBBCode', () => {
@@ -31,4 +32,11 @@ test('convertUrlToLinkPlain', () => {
     .toBe('https://hello.world')
   expect(convertUrlToLinkPlain('https://hello.world', 'Hello World'))
     .toBe('Hello World\nhttps://hello.world')
+})
+
+test('convertUrlToLinkTid', () => {
+  expect(convertUrlToLinkTid('https://hello.world'))
+    .toBe('[[https://hello.world]]')
+  expect(convertUrlToLinkTid('https://hello.world', 'Hello World'))
+    .toBe('[[Hello World|https://hello.world]]')
 })

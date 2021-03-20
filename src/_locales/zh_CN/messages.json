@@ -92,6 +92,9 @@
 , "SELECTION_TO_RAW_STRING": {
     "message": "选中内容 → 原始字符串"
   }
+, "SELECTION_TO_TID": {
+    "message": "选中内容 → Tiddly"
+  }
 , "IMAGE_TO_MARKDOWN": {
     "message": "图片 → Markdown"
   }
@@ -103,6 +106,9 @@
   }
 , "IMAGE_TO_MARKDOWN_DATA_URI_WEBP": {
     "message": "图片 → Markdown(DataURI webp)"
+  }
+, "IMAGE_TO_TID": {
+    "message": "图片 → Tiddly"
   }
 , "IMAGE_TO_HTML": {
     "message": "图片 → HTML"

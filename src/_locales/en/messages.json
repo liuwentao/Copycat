@@ -95,6 +95,9 @@
 , "SELECTION_TO_RAW_STRING": {
     "message": "Selection → Raw strings"
   }
+, "SELECTION_TO_TID": {
+    "message": "Selection → Tiddly"
+  }
 , "IMAGE_TO_MARKDOWN": {
     "message": "Image → Markdown"
   }
@@ -106,6 +109,9 @@
   }
 , "IMAGE_TO_MARKDOWN_DATA_URI_WEBP": {
     "message": "Image → Markdown(DataURI webp)"
+  }
+, "IMAGE_TO_TID": {
+    "message": "Image → Tiddly"
   }
 , "IMAGE_TO_HTML": {
     "message": "Image → HTML"

@@ -19,16 +19,16 @@ test('convertHtmlToAbsoluteLinkHTML', () => {
   `)
 })
 
-test('convertHtmlToRelativeLinkHTML', () => {
-  expect(convertHtmlToRelativeLinkHTML(`
-    <img src="https://hello.world/test/hello">
-    <a href="https://hello.world/test/hello">Hello World</a>
-  `, 'https://hello.world/test/test')
-  ).toBe(`
-    <img src="../hello">
-    <a href="../hello">Hello World</a>
-  `)
-})
+// test('convertHtmlToRelativeLinkHTML', () => {
+//   expect(convertHtmlToRelativeLinkHTML(`
+//     <img src="https://hello.world/test/hello">
+//     <a href="https://hello.world/test/hello">Hello World</a>
+//   `, 'https://hello.world/test/test')
+//   ).toBe(`
+//     <img src="../hello">
+//     <a href="../hello">Hello World</a>
+//   `)
+// })
 
 test('convertHtmlToRootRelativeLinkHTML', () => {
   expect(convertHtmlToRootRelativeLinkHTML(`
