@@ -2,6 +2,7 @@ import {
   TAB_URL_TO_PLAIN
 , TAB_URL_TO_TID
 , TAB_URL_TO_MARKDOWN
+, TAB_URL_TO_ORG
 , TAB_URL_TO_HTML
 , TAB_URL_TO_BBCODE
 , FRAME_URL_TO_PLAIN
@@ -13,6 +14,7 @@ import {
 , LINK_TO_MARKDOWN
 , LINK_TO_HTML
 , LINK_TO_BBCODE
+, LINK_TO_ORG
 , SELECTION_TO_MARKDOWN
 , SELECTION_TO_HTML
 , SELECTION_TO_HTML_ONLY_A_TAG
@@ -22,11 +24,13 @@ import {
 , SELECTION_TO_PLAIN_TRIMMED
 , SELECTION_TO_RAW_STRING
 , SELECTION_TO_TID
+, SELECTION_TO_ORG
 , IMAGE_TO_MARKDOWN
 , IMAGE_TO_MARKDOWN_DATA_URI_JPEG
 , IMAGE_TO_MARKDOWN_DATA_URI_PNG
 , IMAGE_TO_MARKDOWN_DATA_URI_WEBP
 , IMAGE_TO_TID
+, IMAGE_TO_ORG
 , IMAGE_TO_HTML
 , IMAGE_TO_HTML_DATA_URI_JPEG
 , IMAGE_TO_HTML_DATA_URI_PNG
@@ -49,11 +53,12 @@ interface IMenuItem {
 
 export default new Map<string[], IMenuItem[]>([
   [['page'], [
-    { id: TAB_URL_TO_PLAIN }
-  , { id: TAB_URL_TO_MARKDOWN }
-  , { id: TAB_URL_TO_BBCODE }
-  , { id: TAB_URL_TO_HTML }
+    // { id: TAB_URL_TO_PLAIN }
+  { id: TAB_URL_TO_MARKDOWN }
+  // , { id: TAB_URL_TO_BBCODE }
+  // , { id: TAB_URL_TO_HTML }
   , { id: TAB_URL_TO_TID }
+  , { id: TAB_URL_TO_ORG }
   ]]
 , [['frame'], [
     { id: FRAME_URL_TO_PLAIN }
@@ -64,14 +69,16 @@ export default new Map<string[], IMenuItem[]>([
   ]]
 , [['link'], [
     { id: LINK_TO_MARKDOWN }
-  , { id: LINK_TO_BBCODE }
-  , { id: LINK_TO_HTML }
+  // , { id: LINK_TO_BBCODE }
+  // , { id: LINK_TO_HTML }
   , { id: LINK_TO_TID}
+  , { id: LINK_TO_ORG}
   ]]
 , [['selection'], [
     { id: SELECTION_TO_MARKDOWN }
   , { id: SELECTION_TO_TID }
-  , { id: SELECTION_TO_BBCODE }
+  , { id: SELECTION_TO_ORG }
+  // , { id: SELECTION_TO_BBCODE }
   , { id: SELECTION_TO_HTML }
   // , { id: SELECTION_TO_HTML_ONLY_A_TAG }
   // , { id: SELECTION_TO_HTML_NO_ATTR }
@@ -82,15 +89,16 @@ export default new Map<string[], IMenuItem[]>([
   ]]
 , [['image'], [
     { id: IMAGE_TO_MARKDOWN }
-  , { id: IMAGE_TO_MARKDOWN_DATA_URI_JPEG }
-  , { id: IMAGE_TO_MARKDOWN_DATA_URI_PNG }
-  , { id: IMAGE_TO_MARKDOWN_DATA_URI_WEBP }
+  // , { id: IMAGE_TO_MARKDOWN_DATA_URI_JPEG }
+  // , { id: IMAGE_TO_MARKDOWN_DATA_URI_PNG }
+  // , { id: IMAGE_TO_MARKDOWN_DATA_URI_WEBP }
   , { id: IMAGE_TO_TID }
-  , { id: IMAGE_TO_BBCODE }
-  , { id: IMAGE_TO_HTML }
-  , { id: IMAGE_TO_HTML_DATA_URI_JPEG }
-  , { id: IMAGE_TO_HTML_DATA_URI_PNG }
-  , { id: IMAGE_TO_HTML_DATA_URI_WEBP }
+  , { id: IMAGE_TO_ORG }
+  // , { id: IMAGE_TO_BBCODE }
+  // , { id: IMAGE_TO_HTML }
+  // , { id: IMAGE_TO_HTML_DATA_URI_JPEG }
+  // , { id: IMAGE_TO_HTML_DATA_URI_PNG }
+  // , { id: IMAGE_TO_HTML_DATA_URI_WEBP }
   // , { id: IMAGE_TO_DATA_URI_RAW }
   // , { id: IMAGE_TO_DATA_URI_JPEG }
   // , { id: IMAGE_TO_DATA_URI_PNG }

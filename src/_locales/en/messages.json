@@ -47,6 +47,12 @@
 , "TAB_URL_TO_BBCODE": {
     "message": "Tab link → BBCode"
   }
+  , "TAB_URL_TO_TID": {
+    "message": "Tab link → Tiddly"
+  }
+  , "TAB_URL_TO_ORG": {
+    "message": "Tab link → OrgMode"
+  }
 , "FRAME_URL_TO_PLAIN": {
     "message": "Frame link → Plaintext"
   }
@@ -70,6 +76,9 @@
   }
 , "LINK_TO_TID": {
     "message": "Link → Tiddly"
+  }
+, "LINK_TO_ORG": {
+    "message": "Link → OrgMode"
   }
 , "SELECTION_TO_MARKDOWN": {
     "message": "Selection → Markdown"
@@ -98,6 +107,9 @@
 , "SELECTION_TO_TID": {
     "message": "Selection → Tiddly"
   }
+  , "SELECTION_TO_ORG": {
+    "message": "Selection → OrgMode"
+  }
 , "IMAGE_TO_MARKDOWN": {
     "message": "Image → Markdown"
   }
@@ -112,6 +124,9 @@
   }
 , "IMAGE_TO_TID": {
     "message": "Image → Tiddly"
+  }
+, "IMAGE_TO_ORG": {
+    "message": "Image → OrgMode"
   }
 , "IMAGE_TO_HTML": {
     "message": "Image → HTML"
@@ -147,4 +162,5 @@
 , "VIDEO_TO_HTML": {
     "message": "Video → HTML"
   }
+  
 }

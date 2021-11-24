@@ -32,6 +32,9 @@
 , "TAB_URL_TO_TID": {
     "message": "标签页链接 → Tiddly"
   }
+, "TAB_URL_TO_ORG": {
+    "message": "标签页链接 → OrgMode"
+  }
 , "TAB_URL_TO_MARKDOWN": {
     "message": "标签页链接 → Markdown"
   }
@@ -68,6 +71,9 @@
 , "LINK_TO_TID": {
     "message": "链接 → Tiddly"
   }
+, "LINK_TO_ORG": {
+    "message": "链接 → OrgMode"
+  }
 , "SELECTION_TO_MARKDOWN": {
     "message": "选中内容 → Markdown"
   }
@@ -95,6 +101,9 @@
 , "SELECTION_TO_TID": {
     "message": "选中内容 → Tiddly"
   }
+  , "SELECTION_TO_ORG": {
+    "message": "选中内容 → OrgMode"
+  }
 , "IMAGE_TO_MARKDOWN": {
     "message": "图片 → Markdown"
   }
@@ -109,6 +118,9 @@
   }
 , "IMAGE_TO_TID": {
     "message": "图片 → Tiddly"
+  }
+, "IMAGE_TO_ORG": {
+    "message": "图片 → OrgMode"
   }
 , "IMAGE_TO_HTML": {
     "message": "图片 → HTML"

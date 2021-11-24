@@ -17,7 +17,7 @@ Copy content from web powerful than ever before.
   - [x] Markdown
   - [x] BBCode
   - [x] HTML
-  - [ ] Org-mode
+  - [x] Org-mode
 - [x] Copy frame link as
   - [x] Plaintext
   - [x] Markdown
@@ -28,13 +28,14 @@ Copy content from web powerful than ever before.
   - [x] Markdown
   - [x] BBCode
   - [x] HTML
-  - [ ] Org-mode
+  - [x] Org-mode
 - [x] Copy selection as
   - [x] Plaintext
   - [x] Raw strings
   - [x] Markdown
   - [x] BBCode
   - [x] HTML
+  - [x] Org-mode
   - [x] HTML(only \<a\> tag)
   - [x] HTML(no attributes)
   - [ ] JSON string
@@ -42,6 +43,7 @@ Copy content from web powerful than ever before.
   - [x] Markdown
   - [x] Markdown(DataURI jpeg, png, webp\*)
   - [x] HTML
+  - [x] Org-mode
   - [x] HTML(DataURI jpeg, png, webp\*)
   - [x] DataURI(original format)
   - [x] DataURI(jpeg, png, webp\*)

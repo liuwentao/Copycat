@@ -12,9 +12,11 @@ import {
 , convertUrlToLinkBBCode
 , convertUrlToLinkPlain
 , convertUrlToLinkTid
+, convertUrlToLinkOrg
 , convertUrlToImageHTML
 , convertUrlToImageMarkdown
 , convertUrlToImageTid
+, convertUrlToImageOrg
 , convertUrlToImageBBCode
 , convertUrlToImageDataURI
 , convertUrlToFormattedURL
@@ -26,6 +28,7 @@ import {
 , convertHtmlToOnlyATagHTML
 , convertHtmlToNoAttrHTML
 , convertHtmlToTid
+, convertHtmlToOrg
 , convertHtmlToPlainText
 , convertMarkdownToBeautifyMarkdown
 , convertTextToRawString
@@ -38,6 +41,7 @@ import {
 , TAB_URL_TO_MARKDOWN
 , TAB_URL_TO_HTML
 , TAB_URL_TO_BBCODE
+, TAB_URL_TO_ORG
 , FRAME_URL_TO_PLAIN
 , FRAME_URL_TO_MARKDOWN
 , FRAME_URL_TO_HTML
@@ -47,6 +51,7 @@ import {
 , LINK_TO_HTML
 , LINK_TO_BBCODE
 , LINK_TO_TID
+, LINK_TO_ORG
 , SELECTION_TO_MARKDOWN
 , SELECTION_TO_HTML
 , SELECTION_TO_HTML_ONLY_A_TAG
@@ -56,11 +61,13 @@ import {
 , SELECTION_TO_PLAIN_TRIMMED
 , SELECTION_TO_RAW_STRING
 , SELECTION_TO_TID
+, SELECTION_TO_ORG
 , IMAGE_TO_MARKDOWN
 , IMAGE_TO_MARKDOWN_DATA_URI_JPEG
 , IMAGE_TO_MARKDOWN_DATA_URI_PNG
 , IMAGE_TO_MARKDOWN_DATA_URI_WEBP
 , IMAGE_TO_TID
+, IMAGE_TO_ORG
 , IMAGE_TO_HTML
 , IMAGE_TO_HTML_DATA_URI_JPEG
 , IMAGE_TO_HTML_DATA_URI_PNG
@@ -98,6 +105,11 @@ export default {
 ,  [TAB_URL_TO_TID]: ((info, tab) => {
     if (tab && tab.url) {
       return convertUrlToLinkTid(tab.url, tab.title)
+    }
+  }) as CommandComplicateHandler
+,  [TAB_URL_TO_ORG]: ((info, tab) => {
+    if (tab && tab.url) {
+      return convertUrlToLinkOrg(tab.url, tab.title)
     }
   }) as CommandComplicateHandler
 , [TAB_URL_TO_MARKDOWN]: ((info, tab) => {
@@ -238,6 +250,21 @@ export default {
       }
     }
   }) as ContextMenusClickHandler
+, [LINK_TO_ORG]: (async (info, tab) => {
+    if (info.linkUrl) {
+      if (tab && tab.id && tab.url) {
+        const url = convertUrlToFormattedURL(info.linkUrl, info.frameUrl || tab.url)
+        const html = await getActiveElementContent(tab.id, info.frameId)
+        const title =
+        convertHtmlToBeautifyHTML(
+          convertHtmlToSafeHTML(html)
+        )
+        return convertUrlToLinkOrg(url, title || info.linkText)
+      } else {
+        return convertUrlToLinkOrg(info.linkUrl, info.linkText)
+      }
+    }
+  }) as ContextMenusClickHandler
 , [IMAGE_TO_MARKDOWN]: ((info, tab) => {
     if (info.mediaType === 'image' && info.srcUrl) {
       if (tab && tab.url) {
@@ -276,6 +303,16 @@ export default {
         return convertUrlToImageTid(url)
       } else {
         return convertUrlToImageTid(info.srcUrl)
+      }
+    }
+  }) as ContextMenusClickHandler
+, [IMAGE_TO_ORG]: ((info, tab) => {
+    if (info.mediaType === 'image' && info.srcUrl) {
+      if (tab && tab.url) {
+        const url = convertUrlToFormattedURL(info.srcUrl, info.frameUrl || tab.url)
+        return convertUrlToImageOrg(url)
+      } else {
+        return convertUrlToImageOrg(info.srcUrl)
       }
     }
   }) as ContextMenusClickHandler
@@ -459,6 +496,22 @@ export default {
       const baseUrl = info.frameUrl || info.pageUrl || tab.url
       return (
           convertHtmlToTid(
+            convertHtmlToBeautifyHTML(
+              convertHtmlToFormattedLinkHTML(
+                convertHtmlToSafeHTML(html)
+              , baseUrl
+              )
+            )
+          )
+      )
+    }
+  }) as CommandComplicateHandler
+, [SELECTION_TO_ORG]: (async (info, tab) => {
+    if (tab && tab.id) {
+      const html = await getSelectionHTML(tab.id, info.frameId)
+      const baseUrl = info.frameUrl || info.pageUrl || tab.url
+      return (
+          convertHtmlToOrg(
             convertHtmlToBeautifyHTML(
               convertHtmlToFormattedLinkHTML(
                 convertHtmlToSafeHTML(html)
