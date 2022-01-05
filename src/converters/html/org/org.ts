@@ -190,7 +190,28 @@ function createTurndownService(options: Turndown.TurndownServiceOptions = {}) {
                 }
                 return `[[${href}][${content}]]`
               }
-        })
+        }).addRule('fencedCodeBlock ', {
+          filter: function (node: HTMLElement): boolean {
+            return (
+                node.nodeName === 'PRE' &&
+                node.firstChild !==null &&
+                node.firstChild.nodeName === 'CODE'
+            )
+            },
+
+            replacement: function (content: string, node) {
+              if(node.firstChild !==null){
+                // var className = node.firstChild. || ''
+                // var language = (className.match(/language-(\S+)/) || [null, ''])[1]
+                // var code = node.firstChild.textContent
+            
+                return '\n\n#+begin_src \n' +content.replace(/\n$/, '') +'\n#+end_src '+ '\n\n'
+     
+                
+              }
+              return content;
+            }
+      })
 
 
 }
